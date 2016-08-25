@@ -55,7 +55,7 @@
     [self.view showBubbleHeartWithLocaltion:CGPointMake(sender.center.x, sender.center.y-25)];
     _bubbleCount++;
     self.lastDate = [NSDate date];
-    [self timer];
+    self.timer.fireDate = [NSDate distantPast];
 }
 
 - (NSTimer *)timer{
@@ -72,7 +72,7 @@
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Touch count : %zd",_bubbleCount] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
         NSLog(@"touch count : %zd",_bubbleCount);
-        [self cancelTimer];
+        self.timer.fireDate = [NSDate distantFuture];
         _bubbleCount = 0;
     }
 }
